@@ -13,8 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/create" element={<CreatePage />} />
-          <Route path="/update" element={<UpdatePage />} />
-
+          <Route path="/posts/:itemId" element={<UpdatePage />} />
+          {/*this is a route with a dynamic id*/}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
