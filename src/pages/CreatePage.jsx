@@ -29,7 +29,7 @@ export default function CreatePage() {
       "https://crud-app1-5a6eb-default-rtdb.europe-west1.firebasedatabase.app/posts.json";
     const response = await fetch(url, {
       method: "POST",
-      body: JSON.stringify(newPost),
+      body: JSON.stringify(newPost), //just called body - that's how it is!
     });
 
     if (response.ok) {
