@@ -6,6 +6,11 @@ export default function UpdatePage() {
   const navigate = useNavigate(); //Create a navigate constant
   const url = `https://crud-app1-5a6eb-default-rtdb.europe-west1.firebasedatabase.app/posts/${itemId}.json`;
 
+  /*for params can also say 
+  const params = useParams();
+  const url = `https://crud-app1-5a6eb-default-rtdb.europe-west1.firebasedatabase.app/posts/${params.postId}.json`;
+   */
+
   const [post, setPost] = useState({
     caption: "",
     body: "",
@@ -13,12 +18,24 @@ export default function UpdatePage() {
     uid: "",
   });
 
+  /*instead can do:
+  const [post, setPost] = useState({}); 
+  const [caption, setCaption] = useState("");
+  const [body, setBody] = useState("");
+  const [image, setImage] = useState("");
+  const [uid, setUid] = useState("");
+  */
+
   useEffect(() => {
     //fetch existing post data based on the itemId
     async function getPost() {
       const response = await fetch(url);
       const postData = await response.json();
       setPost(postData);
+      /*setCaption(postData.caption);
+      setBody(postData.body);
+      setImg(postData.img);
+      setUid(postData.uid);*/
     }
     getPost();
   }, [url]);
@@ -42,15 +59,19 @@ export default function UpdatePage() {
   }
 
   async function deletePost() {
-    const response = await fetch(url, {
-      method: "DELETE",
-    });
+    const wantToDelete = confirm("Are you sure you want to delete?");
 
-    if (response.ok) {
-      console.log("Post deleted");
-      navigate("/"); //Redirect to homepage
-    } else {
-      console.log("An error occurred while deleting the post");
+    if (wantToDelete) {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        console.log("Post deleted");
+        navigate("/"); //Redirect to homepage
+      } else {
+        console.log("An error occurred while deleting the post");
+      }
     }
   }
 
@@ -63,7 +84,9 @@ export default function UpdatePage() {
           type="text"
           placeholder="Type a title"
           value={post.caption}
+          /*alternative: value={caption} */
           onChange={(e) => setPost({ ...post, caption: e.target.value })}
+          /*alternative: onChange={(e) => setCaption(e.target.value)} */
         />
         <label>Body</label>
         <input
