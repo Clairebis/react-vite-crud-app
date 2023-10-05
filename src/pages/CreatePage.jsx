@@ -36,7 +36,7 @@ export default function CreatePage() {
       console.log("Post created");
       navigate("/"); //Redirect to homepage
     } else {
-      console.log("An error occurred");
+      console.log("An error occurred when creating the post");
     }
   }
 
