@@ -18,6 +18,8 @@ export default function CreatePage() {
     uid: "fTs84KRoYw5pRZEWCq2Z",
   };
 
+  console.log(newPost);
+
   async function createPost(event) {
     event.preventDefault(); // Prevent default form behavior - makes sure the form data is submitted via the  async fetch request instead of triggering a full page refresh (which is the default behaviour)
 
